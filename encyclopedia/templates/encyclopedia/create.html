@@ -1,0 +1,15 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia--New wiki
+{% endblock %}
+
+{% block body %}
+<form action="{% url 'encyclopedia:create' %}" method="post">
+    {% csrf_token %}
+    <label for="wiki">Write a new wiki in markdown:</label>
+    <input type="text" name="title" placeholder="title">
+    <textarea id="wiki" name="wiki" rows="5" cols="33">Django-a python web framwork.</textarea>
+    <input type="submit" value="Create">
+</form>
+{% endblock %}

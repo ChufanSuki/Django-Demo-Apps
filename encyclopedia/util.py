@@ -35,3 +35,18 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+def search(title):
+    """
+    Searches an encyclopedia entry by its title. If no such entry
+    exists, the function returns None. 
+    """
+    entries = list_entries()
+    results = []
+    for entry in entries:
+        print(entry)
+        if re.search(entry, rf'{title}', flags=re.IGNORECASE):
+            return True, [entry]
+        elif re.search(rf'{title}\S*', entry, flags=re.IGNORECASE):
+            results.append(entry)
+    return False ,results
